@@ -23,7 +23,7 @@ exports.handleLineCallback = async (req, res) => {
         code,
         redirect_uri: process.env.LINE_CALLBACK_URL_CALLBACK,
         client_id: process.env.LINE_CHANNEL_ID,
-        client_secret: process.env.LINE_CLIENT_SECRET,
+        client_secret: process.env.LINE_CHANNEL_SECRET_LOGIN,
       }).toString(),
       {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
