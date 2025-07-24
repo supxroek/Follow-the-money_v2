@@ -5,7 +5,7 @@ exports.getLineLoginUrl = (req, res) => {
   const lineLoginUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${
     process.env.LINE_CHANNEL_ID
   }&redirect_uri=${encodeURIComponent(
-    process.env.LINE_CALLBACK_URL_REGISTER
+    process.env.LINE_CALLBACK_URL_CALLBACK
   )}&state=12345abcde&scope=openid%20profile&nonce=09876xyz`;
   res.redirect(lineLoginUrl);
 };
@@ -21,7 +21,7 @@ exports.handleLineCallback = async (req, res) => {
       new URLSearchParams({
         grant_type: "authorization_code",
         code,
-        redirect_uri: process.env.LINE_CALLBACK_URL_REGISTER,
+        redirect_uri: process.env.LINE_CALLBACK_URL_CALLBACK,
         client_id: process.env.LINE_CHANNEL_ID,
         client_secret: process.env.LINE_CLIENT_SECRET,
       }).toString(),

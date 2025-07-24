@@ -5,7 +5,8 @@ export default function Login() {
   const handleLogin = () => {
     // ใช้ environment variable เพื่อรองรับ production/dev
     const backendUrl =
-      import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+      import.meta.env.VITE_BACKEND_URL ||
+      "https://follow-the-money-v2.onrender.com";
     window.location.href = `${backendUrl}/api/line/login`;
   };
 
