@@ -50,8 +50,12 @@ exports.handleLineCallback = async (req, res) => {
       await user.save();
     }
 
-    // ส่งข้อมูล user หรือ token กลับ frontend (เช่น JWT token สำหรับการล็อกอิน session)
-    res.json({ user, accessToken });
+    // Redirect ไปหน้า callback พร้อม token ใน query string
+    const callbackUrl = `${
+      process.env.FRONTEND_callback_URL ||
+      "https://fitting-allegedly-chicken.ngrok-free.app/callback"
+    }?token=${accessToken}`;
+    res.redirect(callbackUrl);
   } catch (error) {
     console.error(error);
     res.status(500).send("Login with LINE failed");
